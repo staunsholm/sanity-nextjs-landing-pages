@@ -51,7 +51,6 @@ class LandingPage extends Component {
             return client
                 .fetch(pageQuery, { slug })
                 .then((res) => {
-                  console.log(res.page);
                   return ({ ...res.page, slug })
                 });
         }
