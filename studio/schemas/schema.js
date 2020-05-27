@@ -24,25 +24,47 @@ import imageSection from './objects/imageSection';
 import mailchimp from './objects/mailchimp';
 import textSection from './objects/textSection';
 
+import localeString from './objects/localeString';
+import course from './documents/course';
+import lesson from './documents/lesson';
+import tips from './objects/tips';
+import courseDescription from './objects/courseDescription';
+import googlePlayButton from './objects/googlePlayButton';
+import appStoreButton from './objects/appStoreButton';
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
-  name: 'default',
-  // Then proceed to concatenate our our document type
-  // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([
-    cta,
-    embedHTML,
-    figure,
-    hero,
-    imageSection,
-    internalLink,
-    link,
-    mailchimp,
-    page,
-    portableText,
-    route,
-    simplePortableText,
-    siteConfig,
-    textSection,
-  ]),
+    name: 'default',
+    // Then proceed to concatenate our our document type
+    // to the ones provided by any plugins that are installed
+    types: schemaTypes.concat([
+        course,
+        lesson,
+        page,
+        route,
+        siteConfig,
+
+        hero,
+        tips,
+        courseDescription,
+        textSection,
+        googlePlayButton,
+        appStoreButton,
+        /*adviceImages,
+    safetyChecklistButton,
+    downloadButton,
+    linkList,
+    header,*/
+
+        cta,
+        embedHTML,
+        figure,
+        imageSection,
+        internalLink,
+        link,
+        mailchimp,
+        portableText,
+        simplePortableText,
+        localeString,
+    ]),
 });

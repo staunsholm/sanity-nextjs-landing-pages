@@ -1,7 +1,7 @@
 export default {
-    name: 'page',
+    name: 'course',
     type: 'document',
-    title: 'Page',
+    title: 'Course',
     fieldsets: [
         {
             title: 'SEO & metadata',
@@ -17,19 +17,12 @@ export default {
         {
             name: 'content',
             type: 'array',
-            title: 'Page sections',
+            title: 'Course sections',
             of: [
                 { type: 'hero' },
                 { type: 'tips' },
-                { type: 'courseDescription' },
                 { type: 'textSection' },
-                { type: 'googlePlayButton' },
-                { type: 'appStoreButton' },
-                /*{ type: 'adviceImages' },
-        { type: 'safetyChecklistButton' },
-        { type: 'downloadButton' },
-        { type: 'linkList' },
-        { type: 'header' },*/
+                //{ type: 'lessonList' },
             ],
         },
         {
