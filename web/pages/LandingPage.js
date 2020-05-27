@@ -22,9 +22,6 @@ const pageQuery = groq`
         ...,
         route->
       },
-      textSection {
-        image {asset->{extension, url}},
-      },
     }
   }
 }
@@ -44,14 +41,19 @@ class LandingPage extends Component {
 
     static async getInitialProps({ query }) {
         const { slug } = query;
+
         if (!query) {
             console.error('no query');
             return;
         }
+
         if (slug && slug !== '/') {
             return client
                 .fetch(pageQuery, { slug })
-                .then((res) => ({ ...res.page, slug }));
+                .then((res) => {
+                  console.log(res.page);
+                  return ({ ...res.page, slug })
+                });
         }
 
         // Frontpage
@@ -64,7 +66,6 @@ class LandingPage extends Component {
             ...,
             content[] {
               ...,
-              image {asset->{extension, url}},
               cta {
                 ...,
                 route->

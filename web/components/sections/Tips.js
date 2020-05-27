@@ -11,7 +11,7 @@ function Tips(props) {
     return (
         <ul className="jamiine">
             {texts.map((text) => (
-                <li>{text.en}</li>
+                <li key={text._key}>{text.en}</li>
             ))}
         </ul>
     );

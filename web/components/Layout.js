@@ -19,7 +19,7 @@ function Layout(props) {
         footerText,
         logo,
     } = config;
-console.log({logo})
+
     return (
         <>
             <Head>

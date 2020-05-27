@@ -20,7 +20,7 @@ class Header extends Component {
         title: PropTypes.string,
         navItems: PropTypes.arrayOf(
             PropTypes.shape({
-                title: PropTypes.string.isRequired,
+                title: PropTypes.object.isRequired,
                 slug: PropTypes.shape({
                     current: PropTypes.string,
                 }).isRequired,
@@ -78,7 +78,7 @@ class Header extends Component {
     };
 
     render() {
-        const { title = 'Missing title', navItems, router, logo } = this.props;
+        const { title, navItems, router, logo } = this.props;
         const { showNav } = this.state;
 
         return (
@@ -94,7 +94,7 @@ class Header extends Component {
                         as="/"
                         prefetch
                     >
-                        <a title={title}>{this.renderLogo(logo)}</a>
+                        <a title={title.en}>{this.renderLogo(logo)}</a>
                     </Link>
                 </h1>
                 <nav className={styles.nav}>
