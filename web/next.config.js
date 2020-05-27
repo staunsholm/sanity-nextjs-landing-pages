@@ -51,7 +51,6 @@ module.exports = withCSS({
                 ...routes
                     .filter(({ slug }) => slug.current)
                     .reduce(reduceRoutes, {}),
-                '/custom-page': { page: '/CustomPage' },
             };
             return nextRoutes;
         });

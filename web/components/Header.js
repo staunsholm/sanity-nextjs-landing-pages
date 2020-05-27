@@ -84,18 +84,9 @@ class Header extends Component {
         return (
             <div className={styles.root} data-show-nav={showNav}>
                 <h1 className={styles.branding}>
-                    <Link
-                        href={{
-                            pathname: '/LandingPage',
-                            query: {
-                                slug: '/',
-                            },
-                        }}
-                        as="/"
-                        prefetch
-                    >
-                        <a title={title.en}>{this.renderLogo(logo)}</a>
-                    </Link>
+                    <a href="/" title={title.en}>
+                        {this.renderLogo(logo)}
+                    </a>
                 </h1>
                 <nav className={styles.nav}>
                     <ul className={styles.navItems}>
@@ -107,22 +98,14 @@ class Header extends Component {
                                     router.query.slug === slug.current;
                                 return (
                                     <li key={_id} className={styles.navItem}>
-                                        <Link
-                                            href={{
-                                                pathname: '/LandingPage',
-                                                query: { slug: slug.current },
-                                            }}
-                                            as={`/${slug.current}`}
-                                            prefetch
+                                        <a
+                                            href={`/${slug.current}`}
+                                            data-is-active={
+                                                isActive ? 'true' : 'false'
+                                            }
                                         >
-                                            <a
-                                                data-is-active={
-                                                    isActive ? 'true' : 'false'
-                                                }
-                                            >
-                                                {title.en}
-                                            </a>
-                                        </Link>
+                                            {title.en}
+                                        </a>
                                     </li>
                                 );
                             })}

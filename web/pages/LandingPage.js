@@ -86,7 +86,7 @@ class LandingPage extends Component {
 
     render() {
         const {
-            title = 'Missing title',
+            title,
             description,
             disallowRobots,
             openGraphImage,

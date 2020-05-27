@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Tips.module.css';
 
 function Tips(props) {
     const { texts } = props;
@@ -9,11 +10,13 @@ function Tips(props) {
     }
 
     return (
-        <ul className="jamiine">
+      <div className={styles.root}>
+        <ul className={styles.bubbles}>
             {texts.map((text) => (
                 <li key={text._key}>{text.en}</li>
             ))}
         </ul>
+      </div>
     );
 }
 

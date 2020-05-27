@@ -2,6 +2,7 @@
 @import '../styles/custom-properties.css';
 
 .root {
+    background-color: rgb(3 42 52);
     position: relative;
     color: var(--color-black, #000);
     display: flex;
@@ -142,6 +143,7 @@
 .hamburgerIcon {
     font-size: calc(var(--font-base-line-height) * 1.5rem);
     display: block;
+    color: #fff;
 
     @media (--media-min-medium) {
         display: none;
