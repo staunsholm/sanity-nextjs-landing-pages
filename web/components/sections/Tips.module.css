@@ -5,7 +5,70 @@
 }
 
 .bubbles {
+  list-style: none;
+  margin: 1em;
+  padding: 0;
+  padding-left: min(33%, 200px);
 }
 
 .bubbles li {
+  margin-bottom: .5em;
+}
+
+.hovering {
+    animation-name: hovering-animation;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    position: absolute;
+    width: 33%;
+    max-width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@keyframes hovering-animation {
+    50% {
+        transform: translate(0px, 10px);
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        transform: translate(-100%, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0vw, 0);
+        opacity: 1;
+    }
+}
+
+/* speech bubble (next to Jamiine) */
+.speechBubble {
+    background-color: #dae2fe;
+    border-radius: 20px;
+    max-width: 600px;
+    padding: 20px;
+    animation-name: fade-in-left;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
+    animation-delay: 400ms;
+    transform: translate(-100%, 0);
+    opacity: 0;
+    animation-fill-mode: forwards;
+    transition-timing-function: ease-out;
+}
+
+.speechBubble:before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEcAAABFCAMAAAAvpgsmAAAAhFBMVEUAAADc5f7////c4/7e5f/e5//a2v/b4/7d5P7h5//g5v/g5//m6f/a4/7a4/7d5P7f5v/j6f/////b4v7b4/7c5P7c5f7d5f7d5f7e5f/e5f/f5f/i6v/q6v/b5P7c5P7d5f7d5P7d5f/e5f/f5v/f6P/h6P/h5v/u7v/f6P/f5v/a4v4vctCsAAAAK3RSTlMAtwLvpXMG5r5SOTMW+vTSaCcD8eHazLqum4+FHwzqx8O1lZNuVk0uDlhH0OH9HgAAAS5JREFUWMPt1slugzAUheGLmed5CrRJM7f3/d+v8iIVQSmN5bNoJP4Vq09HAizTowxWbnVWZ3Ve1PFATgpyXIwjYowTMcYJQc4Z5GQg5wByDJBTYxwRY5ycMc4J5GxAzhbjFAnGCRjj2CDHwDhOgnFOjHEsjCPeMY7PGMfDODljnB7jvJUYx2aI47gaDmQOg+bw0pxk27WmsjOf8+EX8g1ayo59p1zUjv3JtzP5Q73LxB9iJWfgW2ZGd4WpgjP+nINdRLPEZ/O0Y93G+PSoYF8tOvO7XDPSbwWDV/7p7Jhl+4KWEmF28NwFx2dZ6dMzOfn5uLHapjLnTlHL53okzWzJtFddJpIDe0G6WcxxRtoFzOaXPiNSrnLS78hpBGAic3clQFbnIJiwF4QooH/VN/XK6au/TdWkAAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: -6px;
+    left: -9px;
+    content: '';
 }

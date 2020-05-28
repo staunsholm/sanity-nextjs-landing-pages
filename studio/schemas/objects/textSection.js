@@ -1,3 +1,9 @@
+function textPreview(text) {
+    return text && text.length
+        ? text[0].children.find((block) => block.text.trim()).text
+        : '';
+}
+
 export default {
     type: 'object',
     name: 'textSection',
@@ -14,6 +20,11 @@ export default {
             title: 'Text',
         },
         {
+            name: 'cta',
+            type: 'cta',
+            title: 'Call to action',
+        },
+        {
             name: 'image',
             type: 'image',
             title: 'Image',
@@ -22,11 +33,12 @@ export default {
     preview: {
         select: {
             heading: 'heading',
+            text: 'text',
             media: 'image',
         },
-        prepare({ heading, media }) {
+        prepare({ heading, media, text }) {
             return {
-                title: `${heading.en}`,
+                title: heading ? heading.en : textPreview(text) || 'Rich text',
                 subtitle: 'Text section',
                 media,
             };

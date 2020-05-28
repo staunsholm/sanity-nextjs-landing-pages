@@ -3,6 +3,7 @@ import { languages } from '../languages';
 export default {
     name: 'localeString',
     type: 'object',
+    title: 'Translatable string',
     fieldsets: [
         {
             title: 'Translations',

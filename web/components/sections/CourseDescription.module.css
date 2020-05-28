@@ -1,0 +1,17 @@
+@import '../../styles/custom-media.css';
+@import '../../styles/custom-properties.css';
+
+.root {
+  margin: 1em;
+}
+
+.image {
+  max-width: 100%;
+}
+
+.cta {
+  padding: .5em 1em;
+  border: 2px solid #000;
+  text-decoration: none;
+  color: #000;
+}

@@ -16,9 +16,9 @@ export default {
             type: 'reference',
             description: 'Select the page that this route should point to',
             to: [
-                {
-                    type: 'page',
-                },
+                { type: 'page' },
+                { type: 'course' },
+                { type: 'lesson' },
             ],
         },
         {

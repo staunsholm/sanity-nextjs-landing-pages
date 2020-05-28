@@ -14,14 +14,13 @@ const pageQuery = groq`
     ...,
     content[] {
       ...,
-      cta {
+      course->,
+      lessons[]-> {
         ...,
-        route->
+        "slug": *[_type == "route" && references(^._id)][0].slug
       },
-      ctas[] {
-        ...,
-        route->
-      },
+      "courseSlug": *[_type == "route" && references(^.course._ref)][0].slug,
+      cta { ..., route-> },
     }
   }
 }
@@ -48,11 +47,9 @@ class LandingPage extends Component {
         }
 
         if (slug && slug !== '/') {
-            return client
-                .fetch(pageQuery, { slug })
-                .then((res) => {
-                  return ({ ...res.page, slug })
-                });
+            return client.fetch(pageQuery, { slug }).then((res) => {
+                return { ...res.page, slug };
+            });
         }
 
         // Frontpage
@@ -60,23 +57,19 @@ class LandingPage extends Component {
             return client
                 .fetch(
                     groq`
-        *[_id == "global-config"][0]{
-          frontpage -> {
-            ...,
-            content[] {
-              ...,
-              cta {
-                ...,
-                route->
-              },
-              ctas[] {
-                ...,
-                route->
-              },
-            }
-          }
-        }
-      `
+                      *[_id == "global-config"][0]{
+                        frontpage -> {
+                          ...,
+                          content[] {
+                            ...,
+                            course->,
+                            lessons { lesson-> },
+                            "courseSlug": *[_type == "route" && references(^.course._ref)][0].slug,
+                            cta { ..., route-> },
+                          }
+                        }
+                      }
+                    `
                 )
                 .then((res) => ({ ...res.frontpage, slug }));
         }

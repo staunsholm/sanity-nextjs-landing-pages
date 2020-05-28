@@ -31,6 +31,7 @@ import tips from './objects/tips';
 import courseDescription from './objects/courseDescription';
 import googlePlayButton from './objects/googlePlayButton';
 import appStoreButton from './objects/appStoreButton';
+import lessonList from './objects/lessonList';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -50,11 +51,12 @@ export default createSchema({
         textSection,
         googlePlayButton,
         appStoreButton,
+        lessonList,
         /*adviceImages,
-    safetyChecklistButton,
-    downloadButton,
-    linkList,
-    header,*/
+        safetyChecklistButton,
+        downloadButton,
+        linkList,
+        header,*/
 
         cta,
         embedHTML,

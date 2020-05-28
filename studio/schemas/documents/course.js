@@ -22,7 +22,8 @@ export default {
                 { type: 'hero' },
                 { type: 'tips' },
                 { type: 'textSection' },
-                //{ type: 'lessonList' },
+                { type: 'cta' },
+                { type: 'lessonList' },
             ],
         },
         {
