@@ -9,7 +9,6 @@ export default [
         schemaType: 'translation',
         parameters: [{ name: 'projectId', type: 'string' }],
         value: (params) => {
-          console.log(params.projectId);
             return {
                 project: { _type: 'reference', _ref: params.projectId },
             };
