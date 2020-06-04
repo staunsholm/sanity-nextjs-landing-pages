@@ -84,9 +84,9 @@ class Header extends Component {
         return (
             <div className={styles.root} data-show-nav={showNav}>
                 <h1 className={styles.branding}>
-                    <a href="/" title={title.en}>
-                        {this.renderLogo(logo)}
-                    </a>
+                    <Link href="/">
+                        <a title={title.en}>{this.renderLogo(logo)}</a>
+                    </Link>
                 </h1>
                 <nav className={styles.nav}>
                     <ul className={styles.navItems}>
@@ -98,14 +98,15 @@ class Header extends Component {
                                     router.query.slug === slug.current;
                                 return (
                                     <li key={_id} className={styles.navItem}>
-                                        <a
-                                            href={`/${slug.current}`}
-                                            data-is-active={
-                                                isActive ? 'true' : 'false'
-                                            }
-                                        >
-                                            {title.en}
-                                        </a>
+                                        <Link href={`/${slug.current}`}>
+                                            <a
+                                                data-is-active={
+                                                    isActive ? 'true' : 'false'
+                                                }
+                                            >
+                                                {title.en}
+                                            </a>
+                                        </Link>
                                     </li>
                                 );
                             })}

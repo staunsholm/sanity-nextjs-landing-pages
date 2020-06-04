@@ -8,6 +8,8 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 import page from './documents/page';
 import route from './documents/route';
 import siteConfig from './documents/siteConfig';
+import translation from './documents/translation';
+import project from './documents/project';
 
 // Object types
 import cta from './objects/cta';
@@ -32,6 +34,8 @@ import courseDescription from './objects/courseDescription';
 import googlePlayButton from './objects/googlePlayButton';
 import appStoreButton from './objects/appStoreButton';
 import lessonList from './objects/lessonList';
+import news from './documents/news';
+import language from './documents/language';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -44,6 +48,10 @@ export default createSchema({
         page,
         route,
         siteConfig,
+        translation,
+        project,
+        news,
+        language,
 
         hero,
         tips,

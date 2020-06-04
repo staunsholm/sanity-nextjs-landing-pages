@@ -5,7 +5,7 @@ import styles from './Hero.module.css';
 import client from '../../client';
 import SimpleBlockContent from '../SimpleBlockContent';
 import Cta from '../Cta';
-import { Context } from '../../pages/context';
+import { Context } from '../context';
 
 function urlFor(source) {
     return imageUrlBuilder(client).image(source);

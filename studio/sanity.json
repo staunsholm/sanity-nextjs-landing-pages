@@ -1,7 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "Next.js landing pages"
+    "name": "Jamii"
   },
   "api": {
     "projectId": "hbkc21tc",
@@ -21,12 +21,16 @@
   ],
   "parts": [
     {
+      "name": "part:@sanity/base/initial-value-templates",
+      "path": "./initialValueTemplates.js"
+    },
+    {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
     },
     {
       "implements": "part:@sanity/desk-tool/structure",
-      "path": "./deskStructure.js"
+      "path": "./deskStructure/deskStructure.js"
     },
     {
       "implements": "part:@sanity/dashboard/config",
