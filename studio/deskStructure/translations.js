@@ -1,8 +1,11 @@
 import S from '@sanity/desk-tool/structure-builder';
-import { getLanguages, getProjectIdByTitle, populateWithProject } from './baseData';
+import {
+  getLanguages,
+  getProjectIdByTitle,
+  populateWithProject,
+} from './baseData';
 
 export async function translations(projectTitle) {
-  const populateWithProjectTemplate = await populateWithProject(projectTitle)
   const projectId = await getProjectIdByTitle(projectTitle);
 
   // make list of each language containing missing translations
@@ -14,9 +17,10 @@ export async function translations(projectTitle) {
         S.documentTypeList('translation')
           .title(`Missing ${l.language} translations`)
           .filter(
-            `!defined(value.${l.identifier}) && project._ref == "${projectId}"`
+            `_type == "translation" && !defined(value.${l.identifier}) && project._ref == "${projectId}"`
           )
-          .initialValueTemplates(populateWithProjectTemplate)
+          .initialValueTemplates(populateWithProject(projectId, 'translation'))
+          .schemaType('translation')
       )
   );
 
@@ -29,11 +33,15 @@ export async function translations(projectTitle) {
         .items([
           S.listItem()
             .title('All translations')
+            .schemaType('translation')
             .child(
               S.documentTypeList('translation')
                 .title('All translations')
-                .filter(`project._ref == "${projectId}"`)
-                .initialValueTemplates(populateWithProjectTemplate)
+                .filter(
+                  `_type == "translation" && project._ref == "${projectId}"`
+                )
+                .initialValueTemplates(populateWithProject(projectId, 'translation'))
+                .schemaType('translation')
             ),
           ...missingTranslationsByLanguage,
         ])

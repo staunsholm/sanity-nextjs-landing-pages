@@ -20,10 +20,11 @@ export async function getLanguages() {
   return languagesData;
 }
 
-export async function populateWithProject(projectTitle, schemaType) {
+export function populateWithProject(projectId, schemaType) {
   return [
+    // the first parameter must match id in template definition in initialValueTemplates.js
     S.initialValueTemplateItem(`populate-${schemaType}-with-project`, {
-      projectId: await getProjectIdByTitle(projectTitle),
+      projectId,
     }),
   ];
 }

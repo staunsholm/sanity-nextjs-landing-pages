@@ -1,17 +1,18 @@
 import S from '@sanity/desk-tool/structure-builder';
 import {
   courses,
-  languages,
   lessons,
   news,
   pages,
-  projects,
   routes,
   siteConfig,
+  languages,
+  projects,
   allPages,
   allRoutes,
   allCourses,
   allLessons,
+  allSiteConfigs,
 } from './baseTypes';
 import {
   MdPhoneIphone,
@@ -31,7 +32,7 @@ const jamiiAcademy = async () =>
       S.list()
         .title('Jamii.academy')
         .items([
-          siteConfig,
+          siteConfig('Jamii.academy'),
           await pages('Jamii.academy'),
           await courses('Jamii.academy'),
           await lessons('Jamii.academy'),
@@ -47,7 +48,7 @@ const jamiiGuide = async () =>
       S.list()
         .title('Jamii.guide')
         .items([
-          siteConfig,
+          siteConfig('Jamii.guide'),
           await pages('Jamii.guide'),
           await courses('Jamii.guide'),
           await lessons('Jamii.guide'),
@@ -73,7 +74,7 @@ const jamiiOne = async () =>
       S.list()
         .title('Jamii.one')
         .items([
-          siteConfig,
+          siteConfig('Jamii.one'),
           await pages('Jamii.one'),
           await routes('Jamii.one'),
         ])
@@ -107,6 +108,7 @@ export default async () => {
     allRoutes,
     allCourses,
     allLessons,
+    allSiteConfigs,
   ];
 
   return S.list()

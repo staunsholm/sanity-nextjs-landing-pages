@@ -8,6 +8,8 @@ import {
 import { getProjectIdByTitle, populateWithProject } from './baseData';
 
 export async function pages(projectTitle) {
+  const projectId = await getProjectIdByTitle(projectTitle);
+
   return S.listItem()
     .title('Pages')
     .icon(MdDashboard)
@@ -15,23 +17,27 @@ export async function pages(projectTitle) {
     .child(
       S.documentTypeList('page')
         .title('Pages')
-        .filter(`_type == 'page' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
-        .initialValueTemplates(await populateWithProject(projectTitle, 'page'))
+        .filter(`_type == 'page' && project._ref == "${projectId}"`)
+        .initialValueTemplates(populateWithProject(projectId, 'page'))
+        .schemaType('page')
     );
 }
 
-// TODO: siteConfigs should be per project (currently global)
-export const siteConfig = S.listItem()
-  .title('Site config')
-  .icon(MdSettings)
-  .child(
-    S.editor()
-      .id('config')
-      .schemaType('site-config')
-      .documentId('global-config')
-  );
+export function siteConfig(projectTitle) {
+  return S.listItem()
+    .title('Site config')
+    .icon(MdSettings)
+    .child(
+      S.editor()
+        .id('config')
+        .schemaType('site-config')
+        .documentId(`${projectTitle}-config`)
+    );
+}
 
 export async function courses(projectTitle) {
+  const projectId = await getProjectIdByTitle(projectTitle);
+
   return S.listItem()
     .title('Courses')
     .icon(MdAssignment)
@@ -39,12 +45,15 @@ export async function courses(projectTitle) {
     .child(
       S.documentTypeList('course')
         .title('Courses')
-        .filter(`_type == 'course' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
-        .initialValueTemplates(await populateWithProject(projectTitle, 'course'))
+        .filter(`_type == 'course' && project._ref == "${projectId}"`)
+        .initialValueTemplates(populateWithProject(projectId, 'course'))
+        .schemaType('course')
     );
 }
 
 export async function lessons(projectTitle) {
+  const projectId = await getProjectIdByTitle(projectTitle);
+
   return S.listItem()
     .title('Lessons')
     .icon(MdDescription)
@@ -52,32 +61,39 @@ export async function lessons(projectTitle) {
     .child(
       S.documentTypeList('lesson')
         .title('Lessons')
-        .filter(`_type == 'lesson' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
-        .initialValueTemplates(await populateWithProject(projectTitle, 'lesson'))
+        .filter(`_type == 'lesson' && project._ref == "${projectId}"`)
+        .initialValueTemplates(populateWithProject(projectId, 'lesson'))
+        .schemaType('lesson')
     );
 }
 
 export async function routes(projectTitle) {
+  const projectId = await getProjectIdByTitle(projectTitle);
+
   return S.listItem()
     .title('Routes')
     .schemaType('route')
     .child(
       S.documentTypeList('route')
         .title('Routes')
-        .filter(`_type == 'route' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
-        .initialValueTemplates(await populateWithProject(projectTitle, 'route'))
+        .filter(`_type == 'route' && project._ref == "${projectId}"`)
+        .initialValueTemplates(populateWithProject(projectId, 'route'))
+        .schemaType('route')
     );
 }
 
 export async function news(projectTitle) {
+  const projectId = await getProjectIdByTitle(projectTitle);
+
   return S.listItem()
     .title('News')
     .schemaType('news')
     .child(
       S.documentTypeList('news')
         .title('News')
-        .filter(`_type == 'news' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
-        .initialValueTemplates(await populateWithProject(projectTitle, 'news'))
+        .filter(`_type == 'news' && project._ref == "${projectId}"`)
+        .initialValueTemplates(populateWithProject(projectId, 'news'))
+        .schemaType('news')
     );
 }
 
@@ -116,3 +132,9 @@ export const allLessons = S.listItem()
   .icon(MdSettings)
   .schemaType('lesson')
   .child(S.documentTypeList('lesson').title('Lessons'));
+
+export const allSiteConfigs = S.listItem()
+  .title('Site Configs')
+  .icon(MdSettings)
+  .schemaType('site-config')
+  .child(S.documentTypeList('site-config').title('Site Configs'));
