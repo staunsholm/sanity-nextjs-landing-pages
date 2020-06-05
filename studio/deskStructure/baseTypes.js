@@ -20,6 +20,7 @@ export async function pages(projectTitle) {
     );
 }
 
+// TODO: siteConfigs should be per project (currently global)
 export const siteConfig = S.listItem()
   .title('Site config')
   .icon(MdSettings)
@@ -91,3 +92,27 @@ export const projects = S.listItem()
   .icon(MdSettings)
   .schemaType('project')
   .child(S.documentTypeList('project').title('Projects'));
+
+export const allPages = S.listItem()
+  .title('Pages')
+  .icon(MdSettings)
+  .schemaType('page')
+  .child(S.documentTypeList('page').title('Pages'));
+
+export const allRoutes = S.listItem()
+  .title('Routes')
+  .icon(MdSettings)
+  .schemaType('route')
+  .child(S.documentTypeList('route').title('Routes'));
+
+export const allCourses = S.listItem()
+  .title('Courses')
+  .icon(MdSettings)
+  .schemaType('course')
+  .child(S.documentTypeList('course').title('Courses'));
+
+export const allLessons = S.listItem()
+  .title('Lessons')
+  .icon(MdSettings)
+  .schemaType('lesson')
+  .child(S.documentTypeList('lesson').title('Lessons'));

@@ -8,6 +8,10 @@ import {
   projects,
   routes,
   siteConfig,
+  allPages,
+  allRoutes,
+  allCourses,
+  allLessons,
 } from './baseTypes';
 import {
   MdPhoneIphone,
@@ -96,7 +100,14 @@ const jamiiAdmin = async () =>
     );
 
 export default async () => {
-  const adminEntries = [languages, projects];
+  const adminEntries = [
+    languages,
+    projects,
+    allPages,
+    allRoutes,
+    allCourses,
+    allLessons,
+  ];
 
   return S.list()
     .title('Projects')
