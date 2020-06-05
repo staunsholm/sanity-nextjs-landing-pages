@@ -1,24 +1,23 @@
 import S from '@sanity/desk-tool/structure-builder';
-import { projectsData,languagesData } from './baseData';
+import { getLanguages, getProjectIdByTitle, populateWithProject } from './baseData';
 
-export const translations = (projectTitle) => {
-  // find _id from project title
-  const projectId = projectsData.find((p) => p.title === projectTitle)._id;
+export async function translations(projectTitle) {
+  const populateWithProjectTemplate = await populateWithProject(projectTitle)
+  const projectId = await getProjectIdByTitle(projectTitle);
 
-  const missingTranslationsByLanguage = languagesData.map(l => S.listItem()
-    .title(`Missing ${l.language} translations`)
-    .child(
-      S.documentTypeList('translation')
-        .title(`Missing ${l.language} translations`)
-        .filter(
-          `_type == "translation" && !defined(value.${l.identifier}) && project._ref == "${projectId}"`
-        )
-        .initialValueTemplates([
-          S.initialValueTemplateItem('translation-by-project', {
-            projectId,
-          }),
-        ])
-    )
+  // make list of each language containing missing translations
+  const languages = await getLanguages();
+  const missingTranslationsByLanguage = languages.map((l) =>
+    S.listItem()
+      .title(`Missing ${l.language} translations`)
+      .child(
+        S.documentTypeList('translation')
+          .title(`Missing ${l.language} translations`)
+          .filter(
+            `!defined(value.${l.identifier}) && project._ref == "${projectId}"`
+          )
+          .initialValueTemplates(populateWithProjectTemplate)
+      )
   );
 
   return S.listItem()
@@ -33,16 +32,10 @@ export const translations = (projectTitle) => {
             .child(
               S.documentTypeList('translation')
                 .title('All translations')
-                .filter(
-                  `_type == "translation" && project._ref == "${projectId}"`
-                )
-                .initialValueTemplates([
-                  S.initialValueTemplateItem('translation-by-project', {
-                    projectId,
-                  }),
-                ])
+                .filter(`project._ref == "${projectId}"`)
+                .initialValueTemplates(populateWithProjectTemplate)
             ),
           ...missingTranslationsByLanguage,
         ])
     );
-};
+}

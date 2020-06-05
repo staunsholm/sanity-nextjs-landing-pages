@@ -1,16 +1,34 @@
 import client from '../client';
+import S from '@sanity/desk-tool/structure-builder';
 
-export let projectsData = null;
-export let languagesData = null;
+let projectsData = null;
+let languagesData = null;
 
-async function getProjects() {
-  projectsData = await client.fetch('*[_type == "project"]');
+export async function getProjects() {
+  if (projectsData === null) {
+    projectsData = await client.fetch('*[_type == "project"]');
+  }
+
+  return projectsData;
 }
 
-async function getLanguages() {
-  languagesData = await client.fetch('*[_type == "language"]');
+export async function getLanguages() {
+  if (languagesData === null) {
+    languagesData = await client.fetch('*[_type == "language"]');
+  }
+
+  return languagesData;
 }
 
-export function initData() {
-  return Promise.all([getProjects(), getLanguages()]);
+export async function populateWithProject(projectTitle, schemaType) {
+  return [
+    S.initialValueTemplateItem(`populate-${schemaType}-with-project`, {
+      projectId: await getProjectIdByTitle(projectTitle),
+    }),
+  ];
+}
+
+export async function getProjectIdByTitle(projectTitle) {
+  const projects = await getProjects();
+  return projects.find((project) => project.title === projectTitle)._id;
 }

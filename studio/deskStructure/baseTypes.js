@@ -5,12 +5,20 @@ import {
   MdDescription,
   MdAssignment,
 } from 'react-icons/lib/md';
+import { getProjectIdByTitle, populateWithProject } from './baseData';
 
-export const pages = S.listItem()
-  .title('Pages')
-  .icon(MdDashboard)
-  .schemaType('page')
-  .child(S.documentTypeList('page').title('Pages'));
+export async function pages(projectTitle) {
+  return S.listItem()
+    .title('Pages')
+    .icon(MdDashboard)
+    .schemaType('page')
+    .child(
+      S.documentTypeList('page')
+        .title('Pages')
+        .filter(`_type == 'page' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
+        .initialValueTemplates(await populateWithProject(projectTitle, 'page'))
+    );
+}
 
 export const siteConfig = S.listItem()
   .title('Site config')
@@ -22,27 +30,55 @@ export const siteConfig = S.listItem()
       .documentId('global-config')
   );
 
-export const courses = S.listItem()
-  .title('Courses')
-  .icon(MdAssignment)
-  .schemaType('course')
-  .child(S.documentTypeList('course').title('Courses'));
+export async function courses(projectTitle) {
+  return S.listItem()
+    .title('Courses')
+    .icon(MdAssignment)
+    .schemaType('course')
+    .child(
+      S.documentTypeList('course')
+        .title('Courses')
+        .filter(`_type == 'course' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
+        .initialValueTemplates(await populateWithProject(projectTitle, 'course'))
+    );
+}
 
-export const lessons = S.listItem()
-  .title('Lessons')
-  .icon(MdDescription)
-  .schemaType('lesson')
-  .child(S.documentTypeList('lesson').title('Lessons'));
+export async function lessons(projectTitle) {
+  return S.listItem()
+    .title('Lessons')
+    .icon(MdDescription)
+    .schemaType('lesson')
+    .child(
+      S.documentTypeList('lesson')
+        .title('Lessons')
+        .filter(`_type == 'lesson' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
+        .initialValueTemplates(await populateWithProject(projectTitle, 'lesson'))
+    );
+}
 
-export const routes = S.listItem()
-  .title('Routes')
-  .schemaType('route')
-  .child(S.documentTypeList('route').title('Routes'));
+export async function routes(projectTitle) {
+  return S.listItem()
+    .title('Routes')
+    .schemaType('route')
+    .child(
+      S.documentTypeList('route')
+        .title('Routes')
+        .filter(`_type == 'route' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
+        .initialValueTemplates(await populateWithProject(projectTitle, 'route'))
+    );
+}
 
-export const news = S.listItem()
-  .title('News')
-  .schemaType('news')
-  .child(S.documentTypeList('news').title('News'));
+export async function news(projectTitle) {
+  return S.listItem()
+    .title('News')
+    .schemaType('news')
+    .child(
+      S.documentTypeList('news')
+        .title('News')
+        .filter(`_type == 'news' && project._ref == "${await getProjectIdByTitle(projectTitle)}"`)
+        .initialValueTemplates(await populateWithProject(projectTitle, 'news'))
+    );
+}
 
 export const languages = S.listItem()
   .title('Languages')

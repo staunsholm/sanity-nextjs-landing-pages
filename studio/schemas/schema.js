@@ -36,6 +36,8 @@ import appStoreButton from './objects/appStoreButton';
 import lessonList from './objects/lessonList';
 import news from './documents/news';
 import language from './documents/language';
+import localeText from './objects/localeText';
+import localePortableText from './objects/localePortableText';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -74,7 +76,9 @@ export default createSchema({
     link,
     mailchimp,
     portableText,
+    localePortableText,
     simplePortableText,
     localeString,
+    localeText,
   ]),
 });

@@ -16,7 +16,7 @@ export default {
         },
         {
             name: 'body',
-            type: 'localeString',
+            type: 'localePortableText',
             title: 'Body',
         },
         {

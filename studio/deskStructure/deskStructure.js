@@ -18,74 +18,95 @@ import {
   MdEmail,
 } from 'react-icons/lib/md';
 import { translations } from './translations';
-import { initData, projectsData } from './baseData';
 
-const jamiiAcademy = () =>
+const jamiiAcademy = async () =>
   S.listItem()
     .title('Jamii.academy')
     .icon(MdForum)
     .child(
       S.list()
         .title('Jamii.academy')
-        .items([siteConfig, pages, courses, lessons, routes])
+        .items([
+          siteConfig,
+          await pages('Jamii.academy'),
+          await courses('Jamii.academy'),
+          await lessons('Jamii.academy'),
+          await routes('Jamii.academy'),
+        ])
     );
 
-const jamiiGuide = () =>
+const jamiiGuide = async () =>
   S.listItem()
     .title('Jamii.guide')
     .icon(MdBook)
     .child(
       S.list()
         .title('Jamii.guide')
-        .items([siteConfig, pages, courses, lessons, routes])
+        .items([
+          siteConfig,
+          await pages('Jamii.guide'),
+          await courses('Jamii.guide'),
+          await lessons('Jamii.guide'),
+          await routes('Jamii.guide'),
+        ])
     );
 
-const groupApp = () =>
+const groupApp = async () =>
   S.listItem()
     .title('Group App')
     .icon(MdPhoneIphone)
     .child(
       S.list()
         .title('Group App')
-        .items([translations('Group App'), news])
+        .items([await translations('Group App'), await news('Group App')])
     );
 
-const jamiiOne = () =>
+const jamiiOne = async () =>
   S.listItem()
     .title('Jamii.one')
     .icon(MdBusiness)
-    .child(S.list().title('Jamii.one').items([siteConfig, pages, routes]));
+    .child(
+      S.list()
+        .title('Jamii.one')
+        .items([
+          siteConfig,
+          await pages('Jamii.one'),
+          await routes('Jamii.one'),
+        ])
+    );
 
-const newsletter = () =>
+const newsletter = async () =>
   S.listItem()
     .title('Newsletter')
     .icon(MdEmail)
-    .child(S.list().title('Newsletter').items([news]));
+    .child(
+      S.list()
+        .title('Newsletter')
+        .items([await news('Newsletter')])
+    );
 
-const jamiiAdmin = () =>
+const jamiiAdmin = async () =>
   S.listItem()
     .title('Jamii Admin')
     .icon(MdComputer)
     .child(
       S.list()
         .title('Jamii Admin')
-        .items([translations('Jamii Admin')])
+        .items([await translations('Jamii Admin')])
     );
 
 export default async () => {
-  await initData();
-
   const adminEntries = [languages, projects];
 
   return S.list()
     .title('Projects')
     .items([
-      groupApp(),
-      jamiiAcademy(),
-      jamiiGuide(),
-      jamiiOne(),
-      jamiiAdmin(),
-      newsletter(),
+      await groupApp(),
+      await jamiiAcademy(),
+      await jamiiGuide(),
+      await jamiiOne(),
+      await jamiiAdmin(),
+      await newsletter(),
       S.divider(),
       ...adminEntries,
     ]);
