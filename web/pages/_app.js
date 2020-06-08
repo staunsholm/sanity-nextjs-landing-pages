@@ -1,12 +1,12 @@
 import React from 'react';
-import BaseApp, { Container } from 'next/app';
+import BaseApp from 'next/app';
 import client from '../client';
 // import 'normalize.css'
 import '../styles/shared.module.css';
 import '../styles/layout.css';
 
 const siteConfigQuery = `
-  *[_id == "global-config"] {
+  *[_id == "jamii-academy-config"] {
     ...,
     logo {asset->{extension, url}},
     mainNavigation[] -> {
@@ -43,11 +43,7 @@ class App extends BaseApp {
 
   render() {
     const { Component, pageProps } = this.props;
-    return (
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    );
+    return <Component {...pageProps} />;
   }
 }
 

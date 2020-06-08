@@ -3,7 +3,7 @@ const sm = require('sitemap');
 const fs = require('fs');
 const client = require('./client');
 
-client.fetch(`*[_id == "global-config"] {url}[0]`).then((config) => {
+client.fetch(`*[_id == "jamii-academy-config"] {url}[0]`).then((config) => {
     exportPathMap().then((res) => {
         const sitemap = sm.createSitemap({
             hostname: config.url,

@@ -31,7 +31,7 @@ export function siteConfig(projectTitle) {
       S.editor()
         .id('config')
         .schemaType('site-config')
-        .documentId(`${projectTitle}-config`)
+        .documentId(`${_.kebabCase(projectTitle)}-config`)
     );
 }
 

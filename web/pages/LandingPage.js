@@ -56,7 +56,7 @@ class LandingPage extends Component {
       return client
         .fetch(
           groq`
-                      *[_id == "global-config"][0]{
+                      *[_id == "jamii-academy-config"][0]{
                         frontpage -> {
                           ...,
                           content[] {
