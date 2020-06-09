@@ -9,11 +9,13 @@ export default {
       description: 'Choose project that uses this translation',
       to: { type: 'project' },
       validation: (Rule) => Rule.required(),
+      hidden: true,
     },
     {
       name: 'key',
       type: 'string',
       title: 'Key',
+      description: 'Please use _ to structure the key. Example: screen_signin_loginLabel',
     },
     {
       name: 'value',

@@ -3,6 +3,7 @@ import S from '@sanity/desk-tool/structure-builder';
 
 let projectsData = null;
 let languagesData = null;
+let translationGroups = null;
 
 export async function getProjects() {
   if (projectsData === null) {
@@ -18,6 +19,16 @@ export async function getLanguages() {
   }
 
   return languagesData;
+}
+
+export async function getTranslationKeyGroups(projectId) {
+  if (translationGroups === null) {
+    translationGroups = await client.fetch(
+      `*[_type == "translation" && project._ref == "${projectId}"]`
+    );
+  }
+
+  return translationGroups;
 }
 
 export function populateWithProject(projectId, schemaType) {

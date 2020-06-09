@@ -1,0 +1,67 @@
+{
+  "languages": {
+    "en": "English",
+    "da": "Danish"
+  },
+  "screens": {
+    "defaults": {
+      "wait": "Please wait"
+    },
+    "languageselector": {
+      "title": "Select language"
+    },
+    "intro": {
+      "language": {
+        "select": "Select language"
+      },
+      "usp": {
+        "usp1": {
+          "header": "Digital log",
+          "shorttext": "Register savings group activities in an easy, secure way",
+          "text": "<p>Jamiipay is an an easy, secure way to register during your savings group meetings.<br>You can register <br><ul><li>Attendance</li><li>Shares</li><li>Loan repayment</li><li>New loans</li><li>Late fees</li></ul>The application is easy to use, accurate and reliable and makes book keeping easy.<p>All data is stored in a safe, digital platform and can be accessed with any smartphone using a login.</p>",
+          "title": " "
+        },
+        "usp2": {
+          "header": "Transparency & insight",
+          "shorttext": "Get insight into the groups savings progress",
+          "text": " <p>As member of a savings group, you will be able to access data on savings and loans any time, by logging into your jamiipay account on any smart phone.</p><p>This means more transparency and deeper insight into your group's savings and loans, also outside group meetings.</p><br>",
+          "title": " "
+        },
+        "usp3": {
+          "header": "Digital track record",
+          "shorttext": "Build a digital track record that can increase your group's access to financial services",
+          "text": "<p>With a jamiipay account, you are able to log all savings and loans activity.<p>Over time, the group will accumulate a long track record of all savings, loans and repayments along with other data.<p>The track record makes it possible for members to prove their credit worthiness to the outside world, and increase the access to financial services such as loans.</p></p></p><br>",
+          "title": " "
+        }
+      },
+      "startbutton": "Get startet"
+    },
+    "signin": {
+      "landing": {
+        "aboutlink": "What is Jamii.one",
+        "createbutton": "Create account",
+        "letsgetstarted": "Let's get started",
+        "signinbutton": "Login",
+        "subtitle": "Great to see you! To start using jamii.one, please login or create an account",
+        "title": "<h1>Welcome</h1>"
+      },
+      "usps": {
+        "title": "What is Jamii.one",
+        "aboutlink": "About Jamii.one"
+      },
+      "about": {
+        "header": "About JamiiPay",
+        "shorttext": "A digital tool for savings groups",
+        "text": "<div class='fillpage'><p>Jamiipay is an application that can be used to register savings and loans, to allow for savings groups to create a digital track record. Our mission is to use technology to connect unbanked communities to more financial possibilities.</p><div class='footer'>&copy;Copyright 2019 JamiiPay Aps</div></p></div><br>",
+        "title": " "
+      }
+    },
+    "main": {
+      "tabs": {
+        "home": "Home",
+        "groups": "Groups",
+        "courses": "Courses"
+      }
+    }
+  }
+}
