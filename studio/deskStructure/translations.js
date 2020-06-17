@@ -5,6 +5,16 @@ import {
   getTranslationKeyGroups,
   populateWithProject,
 } from './baseData';
+import PlusIcon from 'part:@sanity/base/plus-icon';
+
+const createTranslation = (projectId) =>
+  S.menuItem()
+    .title('New text')
+    .action(() => {
+      location.href = `/intent/create/type=translation;project._ref=${projectId}`;
+    })
+    .icon(PlusIcon)
+    .showAsAction(true);
 
 export async function translations(projectTitle) {
   const projectId = await getProjectIdByTitle(projectTitle);
@@ -17,22 +27,22 @@ export async function translations(projectTitle) {
       .uniqBy((g) => g.key.substr(0, g.key.lastIndexOf('_')))
       .map((g) => {
         const keyGroup = g.key.substr(0, g.key.lastIndexOf('_'));
-        const title = `${keyGroup}`;
         const filter = language
-          ? `_type == "translation" && project._ref == "${projectId}" && key match "${keyGroup}*" && !defined(value.${language})`
-          : `_type == "translation" && project._ref == "${projectId}" && key match "${keyGroup}*"`;
+          ? `_type == "translation" && project._ref == $projectId && key match $keyGroup && !defined(value.${language})`
+          : `_type == "translation" && project._ref == $projectId && key match $keyGroup`;
 
         return S.listItem()
-          .title(title)
+          .title(keyGroup)
           .schemaType('translation')
           .child(
-            S.documentList('translation')
-              .title(title)
+            S.documentTypeList('translation')
+              .title(`App texts - ${keyGroup}`)
               .filter(filter)
+              .params({ projectId, keyGroup: `${keyGroup}*` })
+              .schemaType('translation')
               .initialValueTemplates(
                 populateWithProject(projectId, 'translation')
               )
-              .schemaType('translation')
           );
       })
       .value();
@@ -41,25 +51,26 @@ export async function translations(projectTitle) {
   const missingTranslationsByLanguage = languages.map((l) => {
     const groupKeys = groupedTranslationKeys(l.identifier);
     return S.listItem()
-      .title(`Missing ${l.language} translations`)
-      .child(
-        S.list().title(`Missing ${l.language} translations`).items(groupKeys)
-      );
+      .title(`Missing ${l.language} texts`)
+      .schemaType('translation')
+      .child(S.list().title(`Missing ${l.language} texts`).items(groupKeys));
   });
 
   return S.listItem()
-    .title('Translations')
+    .title('App texts')
     .schemaType('translation')
     .child(
       S.list()
-        .title('Translations')
+        .title('App texts')
+        .menuItems([createTranslation(projectId)])
         .items([
           S.listItem()
-            .title('All translations')
+            .title('All app texts')
             .schemaType('translation')
             .child(
               S.list()
-                .title('Translation groups')
+                .title('App text groups')
+                .menuItems([createTranslation(projectId)])
                 .items(await groupedTranslationKeys())
             ),
           ...missingTranslationsByLanguage,

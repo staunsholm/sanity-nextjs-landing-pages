@@ -4,14 +4,6 @@ export default {
   title: 'Translation',
   fields: [
     {
-      name: 'project',
-      type: 'reference',
-      description: 'Choose project that uses this translation',
-      to: { type: 'project' },
-      validation: (Rule) => Rule.required(),
-      hidden: true,
-    },
-    {
       name: 'key',
       type: 'string',
       title: 'Key',
@@ -21,6 +13,14 @@ export default {
       name: 'value',
       type: 'localeString',
       title: 'Value',
+    },
+    {
+      name: 'project',
+      type: 'reference',
+      description: 'Choose project that uses this translation',
+      to: { type: 'project' },
+      validation: (Rule) => Rule.required(),
+      hidden: false,
     },
     {
       name: 'description',

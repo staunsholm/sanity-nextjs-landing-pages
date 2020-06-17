@@ -8,6 +8,7 @@ function createPopulateWithProjectTemplate(schemaType) {
     schemaType,
     parameters: [{ name: 'projectId', type: 'string' }],
     value: (params) => {
+      console.log(params.projectId);
       return {
         project: { _type: 'reference', _ref: params.projectId },
       };
@@ -17,10 +18,25 @@ function createPopulateWithProjectTemplate(schemaType) {
 
 export default [
   ...T.defaults(),
-  createPopulateWithProjectTemplate('translation'),
+
+  T.template({
+    id: `populate-translation-with-project`,
+    title: 'Project',
+    description: 'Specify initial value for project',
+    schemaType: 'translation',
+    parameters: [{ name: 'projectId', type: 'string' }],
+    value: (params) => {
+      console.log(params.projectId);
+      return {
+        project: { _type: 'reference', _ref: params.projectId },
+      };
+    },
+  }),
+
+  /*createPopulateWithProjectTemplate('translation'),
   createPopulateWithProjectTemplate('news'),
   createPopulateWithProjectTemplate('page'),
   createPopulateWithProjectTemplate('lesson'),
   createPopulateWithProjectTemplate('course'),
-  createPopulateWithProjectTemplate('route'),
+  createPopulateWithProjectTemplate('route'),*/
 ];
