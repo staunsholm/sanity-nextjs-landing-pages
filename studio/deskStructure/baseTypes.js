@@ -138,3 +138,9 @@ export const allSiteConfigs = S.listItem()
   .icon(MdSettings)
   .schemaType('site-config')
   .child(S.documentTypeList('site-config').title('Site Configs'));
+
+export const allRoles = S.listItem()
+  .title('Roles')
+  .icon(MdSettings)
+  .schemaType('role')
+  .child(S.documentTypeList('role').title('Roles'));

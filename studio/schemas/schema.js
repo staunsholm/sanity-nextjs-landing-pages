@@ -38,6 +38,7 @@ import news from './documents/news';
 import language from './documents/language';
 import localeText from './objects/localeText';
 import localePortableText from './objects/localePortableText';
+import role from './documents/role';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -54,6 +55,7 @@ export default createSchema({
     project,
     news,
     language,
+    role,
 
     hero,
     tips,

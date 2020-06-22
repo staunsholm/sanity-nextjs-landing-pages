@@ -12,7 +12,7 @@ import {
   allRoutes,
   allCourses,
   allLessons,
-  allSiteConfigs,
+  allSiteConfigs, allRoles
 } from './baseTypes';
 import {
   MdPhoneIphone,
@@ -109,6 +109,7 @@ export default async () => {
     allCourses,
     allLessons,
     allSiteConfigs,
+    allRoles,
   ];
 
   return S.list()
