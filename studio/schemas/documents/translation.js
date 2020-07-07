@@ -15,19 +15,19 @@ export default {
       title: 'Value',
     },
     {
+      name: 'description',
+      type: 'string',
+      description:
+        'This is just a description, what you enter is not used anywhere',
+      title: 'Description',
+    },
+    {
       name: 'project',
       type: 'reference',
       description: 'Choose project that uses this translation',
       to: { type: 'project' },
       validation: (Rule) => Rule.required(),
       hidden: false,
-    },
-    {
-      name: 'description',
-      type: 'string',
-      description:
-        'This is just a description, what you enter is not used anywhere',
-      title: 'Description',
     },
   ],
 

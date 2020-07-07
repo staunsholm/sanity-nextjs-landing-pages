@@ -144,3 +144,9 @@ export const allRoles = S.listItem()
   .icon(MdSettings)
   .schemaType('role')
   .child(S.documentTypeList('role').title('Roles'));
+
+export const allTranslations = S.listItem()
+  .title('Translations')
+  .icon(MdSettings)
+  .schemaType('translation')
+  .child(S.documentTypeList('translation').title('Translations'));
