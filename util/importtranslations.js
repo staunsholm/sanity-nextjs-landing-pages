@@ -19,9 +19,9 @@ function iterate(json, key) {
 }
 
 const json = JSON.parse(fs.readFileSync("./en.json", "utf8"));
-iterate(json);
+iterate(json.translations);
 
 // sanity dataset import my-data-dump.ndjson production
-// --replace Overwrite existing documents. If you specify _id in the imported data,
-//           this flag can be very useful. It will let you reimport stuff that you got wrong in an earlier pass.
-// --missing Only create documents which don't exist, leave the rest alone.
+// --replace   Overwrite existing documents. If you specify _id in the imported data,
+//             this flag can be very useful. It will let you reimport stuff that you got wrong in an earlier pass.
+// --missing   Only create documents which don't exist, leave the rest alone.

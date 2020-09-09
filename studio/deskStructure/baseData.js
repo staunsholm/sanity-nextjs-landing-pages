@@ -24,7 +24,7 @@ export async function getLanguages() {
 export async function getTranslationKeyGroups(projectId) {
   if (translationGroups === null) {
     translationGroups = await client.fetch(
-      `*[_type == "translation" && project._ref == "${projectId}"]`
+      `*[_type == "translation" && project._ref == "${projectId}"] | order(key)`
     );
   }
 
