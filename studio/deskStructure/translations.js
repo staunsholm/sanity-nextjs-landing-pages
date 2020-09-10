@@ -54,6 +54,19 @@ function Form(args) {
   return getForm(draft || published);
 }
 
+function partOfKey(key) {
+  if (key.startsWith('error_')) {
+    return 'error';
+  }
+  if (key.startsWith('settings_')) {
+    return 'settings';
+  }
+  if (key.startsWith('screens_')) {
+    return key.substr(0, key.indexOf('_', 8));
+  }
+  return key.substr(0, key.lastIndexOf('_'));
+}
+
 export async function translations(projectTitle) {
   const projectId = await getProjectIdByTitle(projectTitle);
   const translationKeyGroups = await getTranslationKeyGroups(projectId);
@@ -62,9 +75,9 @@ export async function translations(projectTitle) {
   // make list of keys that are prefixed by a unique identifier ending in an underscore
   const groupedTranslationKeys = (language) =>
     _.chain(translationKeyGroups.filter((g) => !g.value[language]))
-      .uniqBy((g) => g.key.substr(0, g.key.lastIndexOf('_')))
+      .uniqBy((g) => partOfKey(g.key))
       .map((g) => {
-        const keyGroup = g.key.substr(0, g.key.lastIndexOf('_'));
+        const keyGroup = partOfKey(g.key);
         const filter = language
           ? `_type == "translation" && project._ref == $projectId && key match $keyGroup && !defined(value.${language})`
           : `_type == "translation" && project._ref == $projectId && key match $keyGroup`;
@@ -81,7 +94,7 @@ export async function translations(projectTitle) {
               .initialValueTemplates(
                 populateWithProject(projectId, 'translation')
               )
-              //.child(S.view.component(Form).title('title'))
+            //.child(S.view.component(Form).title('title'))
           );
       })
       .value();
