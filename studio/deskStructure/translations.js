@@ -91,6 +91,7 @@ export async function translations(projectTitle) {
               .filter(filter)
               .params({ projectId, keyGroup: `${keyGroup}*` })
               .schemaType('translation')
+              .defaultOrdering([{ field: 'key', direction: 'asc' }])
               .initialValueTemplates(
                 populateWithProject(projectId, 'translation')
               )
