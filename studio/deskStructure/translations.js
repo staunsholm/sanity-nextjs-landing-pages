@@ -74,7 +74,7 @@ export async function translations(projectTitle) {
 
   // make list of keys that are prefixed by a unique identifier ending in an underscore
   const groupedTranslationKeys = (language) =>
-    _.chain(translationKeyGroups.filter((g) => !g.value[language]))
+    _.chain(translationKeyGroups.filter((g) => !g.value || !g.value[language]))
       .uniqBy((g) => partOfKey(g.key))
       .map((g) => {
         const keyGroup = partOfKey(g.key);
