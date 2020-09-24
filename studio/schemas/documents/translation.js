@@ -1,13 +1,27 @@
+import React from 'react';
+
 export default {
   name: 'translation',
   type: 'document',
   title: 'Translation',
+  fieldsets: [
+    {
+      name: 'key',
+      title: "Key (don't change this)",
+      options: {
+        collapsed: true,
+        collapsible: true,
+      },
+    },
+  ],
   fields: [
     {
       name: 'key',
       type: 'string',
-      title: 'Key',
-      description: 'Please use _ to structure the key. Example: screen_signin_loginLabel',
+      //title: 'Key',
+      description:
+        'Please use _ to structure the key. Example: screens_signin_loginlabel',
+      fieldset: 'key',
     },
     {
       name: 'value',

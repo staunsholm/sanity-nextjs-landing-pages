@@ -14,7 +14,7 @@ export default {
                     {
                         title: 'Frontend',
                         value:
-                            'https://sanity-nextjs-landing-pages-web-92nye5rc.netlify.app',
+                            'https://jamii.sanity.studio',
                         category: 'apps',
                     },
                 ],
