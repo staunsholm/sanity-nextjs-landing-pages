@@ -55,6 +55,9 @@ function Form(args) {
 }
 
 function partOfKey(key) {
+  if (!key) {
+    return '[unknown]';
+  }
   if (key.startsWith('error_')) {
     return 'error';
   }

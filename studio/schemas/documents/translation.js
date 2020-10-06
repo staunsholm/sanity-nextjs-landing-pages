@@ -7,7 +7,7 @@ export default {
   fieldsets: [
     {
       name: 'key',
-      title: "Key (don't change this)",
+      title: "Key (only use this if you are adding a new key)",
       options: {
         collapsed: true,
         collapsible: true,
@@ -22,6 +22,7 @@ export default {
       description:
         'Please use _ to structure the key. Example: screens_signin_loginlabel',
       fieldset: 'key',
+      validation: (Rule) => Rule.required().min(1).max(200),
     },
     {
       name: 'value',
