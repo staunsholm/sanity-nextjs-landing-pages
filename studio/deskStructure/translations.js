@@ -67,6 +67,10 @@ function partOfKey(key) {
   if (key.startsWith('screens_')) {
     return key.substr(0, key.indexOf('_', 8));
   }
+  if (key.startsWith('guides_')) {
+    const prefix = key.substr(0, key.indexOf('_', 'guides_'.length));
+    return prefix || 'guides';
+  }
   return key.substr(0, key.lastIndexOf('_'));
 }
 

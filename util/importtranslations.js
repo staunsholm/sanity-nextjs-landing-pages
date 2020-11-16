@@ -7,7 +7,7 @@ const project = "92241e3a-beb4-4b1e-92e5-27962d2118d8"; // group app
 function iterate(json, key) {
   if ((json && Object.entries(json).length === 0) || typeof json !== "object") {
     const _id = uuidv5(key, project);
-    const en = json.toString().replace('"', '\\"');
+    const en = json.toString().replace(/"/g, '\\"');
     console.log(
       `{"_id": "${_id}", "_type": "translation", "project": {"_ref": "${project}", "_type": "reference"}, "key": "${key}", "value": {"_type": "localeString", "en": "${en}"}}`
     );
