@@ -46,7 +46,7 @@ export async function translations(projectTitle) {
   const groupedTranslationKeys = (language) =>
     _.chain(translationKeyGroups.filter((g) => !g.value || !g.value[language]))
       .uniqBy((g) => partOfKey(g.key))
-      .map((g) => {
+      .map((g, i) => {
         const keyGroup = partOfKey(g.key);
         const filter = language
           ? `_type == "translation" && project._ref == $projectId && key match $keyGroup && !defined(value.${language})`
@@ -54,6 +54,7 @@ export async function translations(projectTitle) {
 
         return S.listItem()
           .title(keyGroup)
+          .id(keyGroup + i) // unique ID in case of malformed keyGroup
           .schemaType('translation')
           .child(
             S.documentTypeList('translation')
@@ -75,7 +76,7 @@ export async function translations(projectTitle) {
     return S.listItem()
       .title(`Missing ${l.language} texts`)
       .schemaType('translation')
-      .child(S.list().title(`Missing ${l.language} texts`).items(groupKeys));
+      .child(S.list().title(`Missing ${l.language} texts2`).items(groupKeys));
   });
 
   return S.listItem()
@@ -83,7 +84,7 @@ export async function translations(projectTitle) {
     .schemaType('translation')
     .child(
       S.list()
-        .title('App texts')
+        .title('App texts2')
         .menuItems([createTranslation(projectId)])
         .items([
           S.listItem()
@@ -95,7 +96,7 @@ export async function translations(projectTitle) {
                 .menuItems([createTranslation(projectId)])
                 .items(await groupedTranslationKeys())
             ),
-          ...missingTranslationsByLanguage,
+          //...missingTranslationsByLanguage,
         ])
     );
 }
