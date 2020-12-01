@@ -76,7 +76,7 @@ export async function translations(projectTitle) {
     return S.listItem()
       .title(`Missing ${l.language} texts`)
       .schemaType('translation')
-      .child(S.list().title(`Missing ${l.language} texts2`).items(groupKeys));
+      .child(S.list().title(`Missing ${l.language} texts`).items(groupKeys));
   });
 
   return S.listItem()
@@ -84,7 +84,7 @@ export async function translations(projectTitle) {
     .schemaType('translation')
     .child(
       S.list()
-        .title('App texts2')
+        .title('App texts')
         .menuItems([createTranslation(projectId)])
         .items([
           S.listItem()
