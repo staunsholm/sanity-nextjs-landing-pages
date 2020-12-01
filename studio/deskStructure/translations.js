@@ -7,12 +7,6 @@ import {
   populateWithProject,
 } from './baseData';
 import PlusIcon from 'part:@sanity/base/plus-icon';
-import { useEditState } from '@sanity/react-hooks';
-import TextInput from '@sanity/components/lib/textInputs/TextInput';
-import TextField from '@sanity/components/lib/fieldsets/DefaultFieldset';
-import FormField from '@sanity/components/lib/formfields/DefaultFormField';
-import Pane from '@sanity/components/lib/panes/DefaultPane';
-import Label from '@sanity/components/lib/labels/DefaultLabel';
 
 const createTranslation = (projectId) =>
   S.menuItem()
@@ -22,37 +16,6 @@ const createTranslation = (projectId) =>
     })
     .icon(PlusIcon)
     .showAsAction(true);
-
-function getForm(doc) {
-  return (
-    <Pane>
-      <Label>
-        Key
-        <TextInput value={doc.key} />
-      </Label>
-      <TextField>
-        <Label>
-          English
-          <TextInput value={doc.value.en} />
-        </Label>
-        <Label>
-          Amharic
-          <TextInput value={doc.value.am} />
-        </Label>
-      </TextField>
-    </Pane>
-  );
-}
-
-function Form(args) {
-  const document = useEditState(args.itemId, 'translation');
-  if (!document) {
-    return <div>Item not ready</div>;
-  }
-  const { draft, published } = document;
-
-  return getForm(draft || published);
-}
 
 function partOfKey(key) {
   if (!key) {
@@ -102,7 +65,6 @@ export async function translations(projectTitle) {
               .initialValueTemplates(
                 populateWithProject(projectId, 'translation')
               )
-            //.child(S.view.component(Form).title('title'))
           );
       })
       .value();
